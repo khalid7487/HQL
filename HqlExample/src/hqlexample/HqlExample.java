@@ -23,7 +23,7 @@ public class HqlExample {
         SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
         Session session=sessionFactory.openSession();
         session.beginTransaction();
-        Query query=session.createQuery("from Employee");
+        Query query=session.createQuery("from Employee where emp_id>2");
         List list=query.list();
         session.getTransaction().commit();
         session.close();
