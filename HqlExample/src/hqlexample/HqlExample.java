@@ -6,6 +6,7 @@
 package hqlexample;
 
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,19 +31,21 @@ public class HqlExample {
 //        query.setString(0, "khalid");
         //    List<Double> list=query.list();
 //        List<Employee> list = query.list();
-        String hql="DELETE from Employee where emp_id = :employee_id";
-        Query query=session.createQuery(hql);
-      //  query.setParameter("salary", 20000.00);
-        query.setParameter("employee_id", 8);
-        int res=query.executeUpdate();
-        System.out.println("Rows affected: "+res);
+//        String hql="DELETE from Employee where emp_id = :employee_id";
+//        Query query=session.createQuery(hql);
+//      //  query.setParameter("salary", 20000.00);
+//        query.setParameter("employee_id", 8);
+//        int res=query.executeUpdate();
+//        System.out.println("Rows affected: "+res);
+        Criteria criteria = session.createCriteria(Employee.class);
+        List<Employee> list = criteria.list();
         session.getTransaction().commit();
         session.close();
         //System.out.println(list.size());
-//        for (Employee e : list) {
-//            System.out.println(e);
-//
-//        }
+        for (Employee e : list) {
+            System.out.println(e.getEmp_name() + " " + e.getSalary());
+
+        }
     }
 
 }
