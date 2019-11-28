@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -39,8 +40,9 @@ public class HqlExample {
 //        int res=query.executeUpdate();
 //        System.out.println("Rows affected: "+res);
         Criteria criteria = session.createCriteria(Employee.class).add(Restrictions.eq("emp_id", 2));
-         criteria.add(Restrictions.or(Restrictions.gt("salary", 2000),
-                 Restrictions.ilike("emp_name", "Emp%")));
+//         criteria.add(Restrictions.or(Restrictions.gt("salary", 2000),
+//                 Restrictions.ilike("emp_name", "Emp%")));
+        criteria.addOrder(Order.desc("salary"));
 //        //to get records having salary more than 10000
 //        criteria.add(Restrictions.gt("salary", 10000));
 //        
