@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -13,6 +14,7 @@ import javax.persistence.Table;
  * @author KHALID
  */
 @Entity
+@NamedQuery(name = "Employee.byId", query = "from Employee where emp_id=?")
 @Table(name="employee")
 public class Employee {
     @Id

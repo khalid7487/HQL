@@ -23,14 +23,16 @@ public class HqlExample {
         SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
         Session session=sessionFactory.openSession();
         session.beginTransaction();
-        Query query=session.createQuery("select sum(salary) from Employee");
-//        query.setInteger("id", 2);
-        List<Double> list=query.list();
+      //  Query query=session.createQuery("select sum(salary) from Employee");
+        Query query=session.getNamedQuery("Employee.byId");
+        query.setInteger(0, 1);
+    //    List<Double> list=query.list();
+    List<Employee> list=query.list();
         session.getTransaction().commit();
         session.close();
         //System.out.println(list.size());
-        for (Double e:list) {
-            System.out.println(e);
+        for (Employee e:list) {
+            System.out.println(e.getEmp_name());
             
         }
     }
