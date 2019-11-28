@@ -30,10 +30,10 @@ public class HqlExample {
 //        query.setString(0, "khalid");
         //    List<Double> list=query.list();
 //        List<Employee> list = query.list();
-        String hql="UPDATE Employee set salary = :salary where emp_id = :employee_id";
+        String hql="DELETE from Employee where emp_id = :employee_id";
         Query query=session.createQuery(hql);
-        query.setParameter("salary", 20000.00);
-        query.setParameter("employee_id", 2);
+      //  query.setParameter("salary", 20000.00);
+        query.setParameter("employee_id", 8);
         int res=query.executeUpdate();
         System.out.println("Rows affected: "+res);
         session.getTransaction().commit();
