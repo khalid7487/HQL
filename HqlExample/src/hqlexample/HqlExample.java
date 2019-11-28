@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -38,6 +39,7 @@ public class HqlExample {
 //        int res=query.executeUpdate();
 //        System.out.println("Rows affected: "+res);
         Criteria criteria = session.createCriteria(Employee.class);
+        criteria.add(Restrictions.eq("emp_id", 2));
         List<Employee> list = criteria.list();
         session.getTransaction().commit();
         session.close();
