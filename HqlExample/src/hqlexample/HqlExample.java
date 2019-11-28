@@ -39,29 +39,31 @@ public class HqlExample {
 //        int res=query.executeUpdate();
 //        System.out.println("Rows affected: "+res);
         Criteria criteria = session.createCriteria(Employee.class).add(Restrictions.eq("emp_id", 2));
-        //to get records having salary more than 10000
-        criteria.add(Restrictions.gt("salary", 10000));
-        
-        //to get records having salary less than 10000
-        criteria.add(Restrictions.lt("salary", 10000));
-        
-        //to get records having  emp_name starting with a
-        criteria.add(Restrictions.like("emp_name", "e%"));
-        
-        //case sensitive form of the above restriction.
-        criteria.add(Restrictions.ilike("emp_name", "E%"));
-        
-        //to get records having salary in between 10000 and 20000
-        criteria.add(Restrictions.between("salary", 10000,20000));
-        
-        //to check if the given property is null
-        criteria.add(Restrictions.isNull("salary"));
-        
-        //to check if the given property is not null
-        criteria.add(Restrictions.isNotNull("salary"));
-        
-        //to check if the given property is not empty 
-        criteria.add(Restrictions.isNotEmpty("salary"));
+         criteria.add(Restrictions.or(Restrictions.gt("salary", 2000),
+                 Restrictions.ilike("emp_name", "Emp%")));
+//        //to get records having salary more than 10000
+//        criteria.add(Restrictions.gt("salary", 10000));
+//        
+//        //to get records having salary less than 10000
+//        criteria.add(Restrictions.lt("salary", 10000));
+//        
+//        //to get records having  emp_name starting with a
+//        criteria.add(Restrictions.like("emp_name", "e%"));
+//        
+//        //case sensitive form of the above restriction.
+//        criteria.add(Restrictions.ilike("emp_name", "E%"));
+//        
+//        //to get records having salary in between 10000 and 20000
+//        criteria.add(Restrictions.between("salary", 10000,20000));
+//        
+//        //to check if the given property is null
+//        criteria.add(Restrictions.isNull("salary"));
+//        
+//        //to check if the given property is not null
+//        criteria.add(Restrictions.isNotNull("salary"));
+//        
+//        //to check if the given property is not empty 
+//        criteria.add(Restrictions.isNotEmpty("salary"));
         List<Employee> list = criteria.list();
         session.getTransaction().commit();
         session.close();
