@@ -20,21 +20,23 @@ public class HqlExample {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
-        Session session=sessionFactory.openSession();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-      //  Query query=session.createQuery("select sum(salary) from Employee");
-        Query query=session.getNamedQuery("Employee.byId");
-        query.setInteger(0, 1);
-    //    List<Double> list=query.list();
-    List<Employee> list=query.list();
+        //  Query query=session.createQuery("select sum(salary) from Employee");
+        //   Query query = session.getNamedQuery("Employee.byId");
+        //   query.setInteger(0, 1);
+        Query query = session.getNamedQuery("Employee.byName");
+        query.setString(0, "khalid");
+        //    List<Double> list=query.list();
+        List<Employee> list = query.list();
         session.getTransaction().commit();
         session.close();
         //System.out.println(list.size());
-        for (Employee e:list) {
-            System.out.println(e.getEmp_name());
-            
+        for (Employee e : list) {
+            System.out.println(e);
+
         }
     }
-    
+
 }

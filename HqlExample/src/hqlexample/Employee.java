@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -15,6 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQuery(name = "Employee.byId", query = "from Employee where emp_id=?")
+@NamedNativeQuery(name="Employee.byName", query = "select * from employee where emp_name=?")
 @Table(name="employee")
 public class Employee {
     @Id
