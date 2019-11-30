@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -42,7 +43,7 @@ public class HqlExample {
         Criteria criteria = session.createCriteria(Employee.class).add(Restrictions.eq("emp_id", 2));
 //         criteria.add(Restrictions.or(Restrictions.gt("salary", 2000),
 //                 Restrictions.ilike("emp_name", "Emp%")));
-        criteria.addOrder(Order.desc("salary"));
+//        criteria.addOrder(Order.desc("salary"));
 //        //to get records having salary more than 10000
 //        criteria.add(Restrictions.gt("salary", 10000));
 //        
@@ -66,6 +67,26 @@ public class HqlExample {
 //        
 //        //to check if the given property is not empty 
 //        criteria.add(Restrictions.isNotEmpty("salary"));
+        //To get total row count.
+        criteria.setProjection(Projections.property("emp_name"));
+        
+        //To get average of a property.
+        criteria.setProjection(Projections.rowCount());
+        
+        //To get distinct count of a property
+        criteria.setProjection(Projections.avg("salary"));
+        
+        //To get distinct count of a property.
+        criteria.setProjection(Projections.countDistinct("emp_name"));
+        
+        //To get maximum of a property.
+        criteria.setProjection(Projections.max("salary"));
+        
+        //To get minimum of a property.
+        criteria.setProjection(Projections.min("salary"));
+        
+        //To get sum of a property.
+        criteria.setProjection(Projections.sum("salary"));
         List<Employee> list = criteria.list();
         session.getTransaction().commit();
         session.close();

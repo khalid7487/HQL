@@ -46,6 +46,21 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/loginjdbc?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">7487</property>
+    <!-- Minimum number of JDBC connections in the pool. Hibernate default:1 -->
+    <property name="hibernate.c3p0.min_size">5</property>
+    <!-- Maximum number of JDBC connections in the pool. Hibernate default:100 -->
+    <property name="hibernate.c3p0.max_size">5</property>
+    <!-- when an idle connection is removed from the pool (in second).
+    Hibernate default:0, never expire.-->
+    <property name="hibernate.c3p0.timeout">3000</property>
+    <!-- number of prepared statements will be cached. Increase performance.
+    Hibernate default:0, caching is disable.-->
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <!--idle time in seconds before a connection is automatically validated.
+    Hibernate default:0-->
+    <property name="hibernate.c3p0.idle_test_period">300</property>
+    <!-- Disable the second-level cahe-->
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
     <mapping class="hqlexample.Employee"/>
   </session-factory>
 </hibernate-configuration>
